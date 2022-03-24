@@ -1,0 +1,30 @@
+{% extends 'admins/base_admin.html' %}
+
+{% block content %}
+<div class="card">
+	<div class="card-header">All Messages</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table" >
+					<tbody>
+						{% for message in all_messages %}
+						
+						<tr {% if message in new_messages %} style="background-color:#e0e3ec;border-bottom: 2px solid #b3bad5;" {% endif %}>
+							<td>
+								<a href="{% url 'read' message.id %}" style="color: #000;text-decoration: none;background-color: transparent">
+									<div style="height: 100%;width: 100%;">
+								{{ message }}<span class="float-right">Mar 22</span> <br> this is a message from indeed.com.... </div></a>
+							</td>
+
+						</tr>
+						{% endfor %}
+						
+					</tbody>
+				</table><hr>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

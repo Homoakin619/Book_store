@@ -1,0 +1,59 @@
+{% extends 'admins/base_admin.html' %}
+{% load static %}
+{% load book_count %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Components</h1>
+</div>
+<div class="row">
+
+	<div class="card shadow col-md-4 mb-4">
+	    <div class="card-header py-3">
+	        <h6 class="m-0 font-weight-bold text-primary">custom text</h6>
+	    </div>
+	    <div class="card-body">
+	        <form class="">
+	    		<input class="form-control" type="text" name="">
+	    		<br/>
+	    		<button class="btn btn-primary btn-block">Change</button>
+	        </form>
+	    </div>
+	</div>
+
+	<div class="card shadow col-md-4 mb-4">
+	    <div class="card-header py-3">
+	        <h6 class="m-0 font-weight-bold text-primary">Navbar Brand</h6>
+	    </div>
+	    <div class="card-body">
+	        <form class="">
+	    		<input class="form-control" type="text" name="navbrand"><br/>
+	    		<button class="btn btn-primary btn-block">Change</button>
+	        </form>
+	    </div>
+	</div>
+
+	<div class="card shadow col-md-4 mb-4">
+	    <div class="card-header py-3">
+	        <h6 class="m-0 font-weight-bold text-primary">Footer</h6>
+	    </div>
+	    <div class="card-body">
+	        <form class="">
+	    		<input class="form-control" type="text" name="footer"><br/>
+	    		<button class="btn btn-primary btn-block">Change</button>
+	        </form>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'core/js/datatables.js' %}"></script>
+<script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/js/dataTables.bootstrap4.min.js' %}"></script>
+
+{% endblock script %}
+

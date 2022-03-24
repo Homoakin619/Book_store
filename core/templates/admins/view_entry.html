@@ -1,0 +1,145 @@
+{% extends 'admins/base_admin.html' %}
+{% load static %}
+{% load book_count %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
+{% endblock style %}
+
+{% block content %}
+{% if title == 'author' %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Authors</h1>
+    <a href="{% url 'add-author' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+       class="fas fa-upload fa-sm text-white-50"></i> New Author</a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Total Books</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Total Books</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for author in authors %}
+                    <tr>
+                        <td><a href="{% url 'author_detail' author.pk %}"> {{ author.firstname }} {{ author.lastname }}</a></td>
+                        <td><center><a href="{% url 'books_by' author.pk %}">{{ author|get_book }}</a></center>  </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% elif title == 'book' %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Books</h1>
+    <a href="{% url 'new_book' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+       class="fas fa-upload fa-sm text-white-50"></i> New Book</a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Books</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Genre</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Genre</th>
+                        <th>Pages</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> </td>
+                        <td>{% for author in book.author.all %} {{ author }} {% endfor %}</td>
+                        <td>{{ book.publisher }} </td>
+                        <td>{{ book.genre }} </td>
+                        <td><center>{{ book.size }}</center>  </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Publishers</h1>
+    <a href="{% url 'add-publisher' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+       class="fas fa-upload fa-sm text-white-50"></i> New Publisher</a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Books</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Books</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Books</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for publisher in publishers %}
+                    <tr>
+                        <td><a href="{% url 'publisher_detail' publisher.pk %}" >{{ publisher.name }}</a> </td>
+                        <td> {{ publisher|get_publisher_book }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'core/js/datatables.js' %}"></script>
+<script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/js/dataTables.bootstrap4.min.js' %}"></script>
+
+{% endblock script %}
+

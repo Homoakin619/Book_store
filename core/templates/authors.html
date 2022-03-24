@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for author in authors %}
+	<li><a href="{{ author.get_absolute_url }}">{{ author.firstname }}</a></li>
+{% endfor %}
+{% endblock %}

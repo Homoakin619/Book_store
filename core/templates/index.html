@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>All Library</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'core/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/templatemo-finance-business.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/owjl.css' %}">
+
+  </head>
+
+  <body>
+
+{% include 'header.html' %}
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="main-banner header-text" id="top">
+        <div class="Modern-Slider">
+
+          <!-- Item -->
+          <div class="item item-2">
+            <div class="img-fill">
+                <div class="text-content">
+                  <h6>we are here to support you</h6>
+                  <h4>All Your favorite Books <br> All in one place</h4>
+                  <p>Get Any book you need from our rich collection of books of all categories...</p>
+                  <!-- <a href="services.html" class="filled-button">our services</a> -->
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+    </div>
+    <!-- Banner Ends Here -->
+
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Latest <em>Books</em></h2>
+              <div class="divider div-transparent div-arrow-down"></div>
+            </div>
+          </div>
+
+          {% for book in latest_books %}
+          <div class="col-md-2"><a href="{% url 'book-detail' book.title %}">
+            <div class="service-item">
+              <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+              <!-- <div class="down-content">
+              </div> -->
+            </div></a>
+          </div>
+          {% endfor %}
+
+        </div> <!-- //End row -->
+        </div> <!-- //End container -->
+      </div> <!-- //End services -->
+    </div> <!-- //End main-banner -->
+
+
+    <!-- Footer Starts Here -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col footer-item">
+            <!-- <h4>Finance Business</h4>
+            <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p> -->
+            <center>            
+              <ul class="social-icons">
+              <li><a rel="nofollow" href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+            </ul></center>
+
+          </div>
+          <!-- <div class="col-md-3 footer-item">
+            <h4>Useful Links</h4>
+          </div> -->
+        
+        </div>
+      </div>
+    </footer>
+    
+    <div class="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Copyright &copy; 2020 Financial Business Co., Ltd.
+            
+            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a><br>
+            Distributed By: <a rel="nofollow noopener" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+          </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+
+    <script src="{% static 'core/js/jquery.min.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'admins/base_admin.html' %}
+{% load static %}
+{% load book_count %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4 offset-md-2">
+    <h1 class="h3 mb-0 text-gray-800">{{ author.firstname }} {{ author.lastname }}</h1>
+    <a href="{% url 'edit-author' author.pk %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+       class="fas fa-upload fa-sm text-white-50"></i> Edit Author</a>
+</div>
+<div class="row">
+    <div class="card shadow mb-4 col-md-8 offset-md-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Books By This Author</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Publisher</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td><a href="{% url 'book_detail' book.pk %}">{{ book.title}}</a></td>
+                            <td> {{ book.publisher }} </td> 
+                        </tr>
+                        {% endfor %}
+     
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'core/js/datatables.js' %}"></script>
+<script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/js/dataTables.bootstrap4.min.js' %}"></script>
+
+{% endblock script %}
+
